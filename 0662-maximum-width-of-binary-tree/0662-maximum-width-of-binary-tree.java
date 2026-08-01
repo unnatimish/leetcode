@@ -49,12 +49,9 @@ class Solution {
                     q.offer(new Pair(2 * p.index + 1, node.right));
                 }
             }
-            System.out.println(map);
-            // if (map.size() == 1) {
-            //     max = Math.max(max,map.firstKey());
-            // } else {
+           
                 max = (int)Math.max(max, map.lastKey() - map.firstKey() + 1);
-           // }
+           
 
         }
         return max;
