@@ -34,14 +34,15 @@ class Solution {
             return 0;
         Queue<Pair> q = new LinkedList<>();
         q.offer(new Pair(0L, root));
+        
         while (!q.isEmpty()) {
-            TreeMap<Long, Integer> map = new TreeMap<>();
             int n = q.size();
+            Long firstIndex=q.peek().index;
+        Long lastIndex=firstIndex;
             for (int i = 0; i < n; i++) {
                 Pair p = q.poll();
                 TreeNode node = p.node;
-                map.put(p.index, p.node.val);
-
+                lastIndex=p.index;
                 if (node.left != null) {
                     q.offer(new Pair(2 * p.index, node.left));
                 }
@@ -50,7 +51,7 @@ class Solution {
                 }
             }
            
-                max = (int)Math.max(max, map.lastKey() - map.firstKey() + 1);
+                max = (int)Math.max(max, lastIndex-firstIndex + 1);
            
 
         }
