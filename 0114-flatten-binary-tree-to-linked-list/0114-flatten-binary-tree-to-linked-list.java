@@ -14,15 +14,30 @@
  * }
  */
 class Solution {
-    TreeNode prev = null;
     public void flatten(TreeNode root) {
-        if(root==null) return;
-                 flatten(root.right);
+        TreeNode curr= root;
+        while(curr!=null){
+            if(curr.left!=null){
+                TreeNode leftNode = curr.left;
+                while(leftNode.right!=null){
+                    leftNode=leftNode.right;
+                }
+                 leftNode.right = curr.right;
 
-         flatten(root.left);
-        root.right=prev;
-        root.left=null;
-        prev=root;
+                curr.right = curr.left;
+
+                curr.left = null;
+                ////
+                // leftNode.right=curr;
+                // leftNode.left=null;
+                // TreeNode temp=curr.left;
+                // curr.left=null;
+                // curr=temp;
+            }else{
+                curr=curr.right;
+            }
+        }
+       
        
         
     }
